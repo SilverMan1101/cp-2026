@@ -1,0 +1,34 @@
+{
+  "model_version": "v1.0.0-rf-gb",
+  "feature_names": [
+    "weekly_hours",
+    "overtime_hours",
+    "meeting_hours",
+    "weekend_hours",
+    "focus_hours",
+    "after_hours_messages",
+    "pto_deficit_days",
+    "exhaustion_score",
+    "engagement_score",
+    "support_score",
+    "sentiment_polarity"
+  ],
+  "feature_importances": {
+    "after_hours_messages": 0.4556740596558317,
+    "exhaustion_score": 0.28076966086583727,
+    "sentiment_polarity": 0.07199693558849286,
+    "pto_deficit_days": 0.05013620041056715,
+    "engagement_score": 0.04742276635843139,
+    "meeting_hours": 0.026838305657177715,
+    "support_score": 0.024651754226013952,
+    "overtime_hours": 0.01993466419527211,
+    "focus_hours": 0.009323080740654058,
+    "weekly_hours": 0.007237770190245332,
+    "weekend_hours": 0.006014802111476391
+  },
+  "metrics": {
+    "regressor_r2": 0.896047857160902,
+    "regressor_rmse": 3.458717677750256,
+    "classifier_accuracy": 0.9675
+  }
+}

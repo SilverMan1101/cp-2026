@@ -1,0 +1,64 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: emotionsense-backend
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:default}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+# EmotionSense Application Configuration
+emotionsense:
+  jwt:
+    secret: "EmotionSense-CP2026-JWT-Secret-Key-Change-This-For-Production-9f72a1c84d6e"
+    expiration-ms: 86400000
+  ml-service:
+    url: ${ML_SERVICE_URL:http://localhost:8000}
+    connect-timeout-ms: 4000
+    read-timeout-ms: 8000
+  privacy:
+    k-anonymity-threshold: 5
+    redact-pii: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+
+  datasource:
+    url: jdbc:h2:mem:emotionsense_db;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+---
+spring:
+  config:
+    activate:
+      on-profile: postgres
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/emotionsense}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
